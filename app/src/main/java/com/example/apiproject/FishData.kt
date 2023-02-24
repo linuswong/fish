@@ -12,8 +12,14 @@ data class FishData(
     val scientificName:String,
     val speciesAliases:String,
     val speciesName:String,
+    val population: String,
 
-    val calories:String
+    val calories:String,
+    val carbohydrates: String,
+    val choelstrol: String,
+    val fat: String,
+    val fiber:String,
+    val sugars: String
 ): Parcelable, Comparable<FishData> {
     override fun compareTo(other: FishData): Int {
         return this.calories.toInt()
