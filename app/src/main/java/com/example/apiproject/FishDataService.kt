@@ -11,7 +11,7 @@ interface FishDataService {
 
     fun getFishDataByFish(
         @Path("fish") fish: String,
-        @Query("apiKey") spiKey: String
+
     ): Call<List<FishData>>
 
 }

@@ -9,8 +9,8 @@ class FishDetailActivity : AppCompatActivity() {
         val EXTRA_FISH="Fish"
     }
     private lateinit var binding: ActivityFishDetailBinding
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreate(savedInstanceFish: Bundle?) {
+        super.onCreate(savedInstanceFish)
         binding=ActivityFishDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }

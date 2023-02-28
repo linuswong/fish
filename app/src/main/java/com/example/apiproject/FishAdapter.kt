@@ -47,4 +47,6 @@ class FishAdapter(private val dataSet: List<FishData>):    RecyclerView.Adapter<
         }
 
     }
+    override fun getItemCount() = dataSet.size
+
 }
