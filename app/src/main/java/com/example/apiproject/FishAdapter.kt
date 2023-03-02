@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 
-class FishAdapter(private val dataSet: List<FishData>):    RecyclerView.Adapter<FishAdapter.ViewHolder>() {
+class FishAdapter(private val dataSet: List<FishData>): RecyclerView.Adapter<FishAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textViewPopulation: TextView
         val textViewLastSpeciesName: TextView
@@ -38,7 +38,7 @@ class FishAdapter(private val dataSet: List<FishData>):    RecyclerView.Adapter<
         var context = viewHolder.textViewLastSpeciesName.context
         val fish = dataSet[position]
         viewHolder.textViewLastSpeciesName.text = fish.speciesName
-        viewHolder.textViewPopulation.text = fish.population
+        viewHolder.textViewPopulation.text = fish.Population
         viewHolder.layout.setOnClickListener {
 //            Toast.makeText(it.context, f, Toast.LENGTH_SHORT).show()
             val detailIntent = Intent(it.context, FishDetailActivity::class.java)

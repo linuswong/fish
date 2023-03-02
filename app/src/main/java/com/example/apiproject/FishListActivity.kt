@@ -19,7 +19,7 @@ class FishListActivity: AppCompatActivity() {
         const val TAG = "FishListActivity"
         const val FISH = "red-snapper"
     }
-    lateinit var adapter: Adapter
+    lateinit var adapter: FishAdapter
     lateinit var fish: List<FishData>
 
     private lateinit var binding: ActivityFishListBinding
@@ -34,10 +34,10 @@ class FishListActivity: AppCompatActivity() {
 
 
     private fun getCountyDataByStateApiCall(fish: String) {
-        val fishDataService =
+        var fishDataService =
             RetrofitHelper.getInstance().create(FishDataService::class.java)
 
-        val fishDataCall=
+        var fishDataCall=
             fishDataService.getFishDataByFish(fish)
 
 
@@ -55,9 +55,9 @@ class FishListActivity: AppCompatActivity() {
                 } else{
                     Log.d(TAG, "null")
                 }
-                binding.RecyclerViewCountyList.adapter = adapter
+                binding.RecyclerViewFishList.adapter = adapter
 
-                binding.RecyclerViewCountyList.layoutManager = LinearLayoutManager(null)
+                binding.RecyclerViewFishList.layoutManager = LinearLayoutManager(null)
             }
 
 
@@ -69,7 +69,7 @@ class FishListActivity: AppCompatActivity() {
         )
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        val inflater: MenuInflater = menuInflater
+        var inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.fish_menu, menu)
         return true
     }
@@ -80,52 +80,42 @@ class FishListActivity: AppCompatActivity() {
 //        if(response.body()!=null){
 //            adapter=CountyAdapter(response.body()!!)
 //        }
+        adapter = FishAdapter(fish)
+        binding.RecyclerViewFishList.adapter = adapter
+        binding.RecyclerViewFishList.layoutManager = LinearLayoutManager(null)
 
         return when (item.itemId) {
             R.id.menu_fishMenu_sortBySpeciesName -> {
                 fish=fish.sortedBy {
                     it.scientificName
-
                 }
-                adapter = FishAdapter(fish)
-                binding.RecyclerViewCountyList.adapter = adapter
-                binding.RecyclerViewCountyList.layoutManager = LinearLayoutManager(null)
                 true
             }
-            R.id.menu_countyMenu_sortByCountyName -> {
+            R.id.menu_fishMenu_sortByPopulation -> {
                 fish=fish.sortedBy {
-                    it.county
-
+                    it.Population
                 }
-                adapter = CountyAdapter(fish)
-                binding.RecyclerViewCountyList.adapter = adapter
-                binding.RecyclerViewCountyList.layoutManager = LinearLayoutManager(null)
                 true
             }
-            R.id.menu_countyMenu_sortWeeklyNewCases -> {
+            R.id.menu_fishMenu_sortByCarbs -> {
                 fish =
-                    fish.sortedWith(compareByDescending<CountyData> { it.metrics.weeklyNewCasesPer100k }
-                        .thenByDescending { it.county })
-
-
-                adapter = CountyAdapter(fish)
-                binding.RecyclerViewCountyList.adapter = adapter
-                binding.RecyclerViewCountyList.layoutManager = LinearLayoutManager(null)
+                    fish.sortedWith(compareByDescending<FishData> { it.carbohydrates }
+                        .thenByDescending { it.carbohydrates.toInt() })
                 true
             }
-            R.id.menu_actualInfo -> {
-                val builder = AlertDialog.Builder(this)
-
-                with(builder)
-                {
-                    setTitle("Info")
-                    setMessage("Red: High Transmission\nOrange:Substantial Transmission\nYellow: " +
-                            "Moderate Transmission\nBlue: Low Transmission\n\nThe number represents " +
-                            "the weekly case count per 100k people in the county.")
-                    show()
-                }
-                true
-            }
+//            R.id.menu_actualInfo -> {
+//                val builder = AlertDialog.Builder(this)
+//
+//                with(builder)
+//                {
+//                    setTitle("Info")
+//                    setMessage("Red: High Transmission\nOrange:Substantial Transmission\nYellow: " +
+//                            "Moderate Transmission\nBlue: Low Transmission\n\nThe number represents " +
+//                            "the weekly case count per 100k people in the county.")
+//                    show()
+//                }
+//                true
+//            }
 
             else -> super.onOptionsItemSelected(item)
             //I was here
@@ -134,5 +124,4 @@ class FishListActivity: AppCompatActivity() {
     }
 
 
-}
 }

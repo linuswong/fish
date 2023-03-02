@@ -3,11 +3,11 @@
 
     <item
         android:id="@+id/menu_fishMenu_sortBySpeciesName"
-        android:title="Item" />
+        android:title="Sort By Species Name" />
     <item
         android:id="@+id/menu_fishMenu_sortByPopulation"
-        android:title="Item" />
+        android:title="Sort By Population" />
     <item
         android:id="@+id/menu_fishMenu_sortByCarbs"
-        android:title="Item" />
+        android:title="Sort By Carbs." />
 </menu>

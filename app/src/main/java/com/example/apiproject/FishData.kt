@@ -12,7 +12,7 @@ data class FishData(
     val scientificName:String,
     val speciesAliases:String,
     val speciesName:String,
-    val population: String,
+    val Population: String,
 
     val calories:String,
     val carbohydrates: String,

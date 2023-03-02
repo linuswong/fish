@@ -7,11 +7,11 @@ import retrofit2.http.Query
 
 interface FishDataService {
 
-    @GET("api/species/{species}.json?")
+    @GET("{speciesName}")
 
     fun getFishDataByFish(
-        @Path("fish") fish: String,
+        @Path("speciesName") speciesName: String,
 
-    ): Call<List<FishData>>
+        ): Call<List<FishData>>
 
 }

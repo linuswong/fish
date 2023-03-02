@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitHelper {
-    val baseURL="https://www.fishwatch.gov/api/species"
+    val baseURL="https://www.fishwatch.gov/api/species/"
 
     fun getInstance(): Retrofit {
         return Retrofit.Builder()

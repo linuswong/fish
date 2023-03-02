@@ -16,13 +16,20 @@
         android:theme="@style/Theme.APIProject"
         tools:targetApi="31">
         <activity
+
             android:name=".FishListActivity"
-            android:exported="false"
-            android:label="@string/title_activity_fish_list"
-            android:theme="@style/Theme.APIProject.NoActionBar" />
+            android:exported="true">
+                <intent-filter>
+                    <action android:name="android.intent.action.MAIN" />
+
+                    <category android:name="android.intent.category.LAUNCHER" />
+                    android:label="@string/title_activity_fish_list"
+                    android:theme="@style/Theme.APIProject.NoActionBar" />
+                </intent-filter>
+        </activity>
         <activity
             android:name=".FishDetailActivity"
-            android:exported="false" />
+            android:exported="true" />
     </application>
 
 </manifest>
