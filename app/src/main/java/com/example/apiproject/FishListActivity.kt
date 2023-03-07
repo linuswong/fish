@@ -1,12 +1,10 @@
 package com.example.apiproject
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.widget.Adapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.apiproject.databinding.ActivityFishListBinding
@@ -29,11 +27,11 @@ class FishListActivity: AppCompatActivity() {
         setContentView(binding.root)
 
 
-        getCountyDataByStateApiCall(FISH)
+        getFishDataByFishApiCall(FISH)
     }
 
 
-    private fun getCountyDataByStateApiCall(fish: String) {
+    private fun getFishDataByFishApiCall(fish: String) {
         var fishDataService =
             RetrofitHelper.getInstance().create(FishDataService::class.java)
 
@@ -87,7 +85,7 @@ class FishListActivity: AppCompatActivity() {
         return when (item.itemId) {
             R.id.menu_fishMenu_sortBySpeciesName -> {
                 fish=fish.sortedBy {
-                    it.scientificName
+                    it.scientific_name
                 }
                 true
             }
@@ -99,8 +97,8 @@ class FishListActivity: AppCompatActivity() {
             }
             R.id.menu_fishMenu_sortByCarbs -> {
                 fish =
-                    fish.sortedWith(compareByDescending<FishData> { it.carbohydrates }
-                        .thenByDescending { it.carbohydrates.toInt() })
+                    fish.sortedWith(compareByDescending<FishData> { it.Carbohydrate }
+                        .thenByDescending { it.Carbohydrate.toInt() })
                 true
             }
 //            R.id.menu_actualInfo -> {
