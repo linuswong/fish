@@ -10,8 +10,6 @@ data class FishData(
     @SerializedName("Fishery Management")
     val FisheryManagement: String?,
     val Habitat:String?,
-//    @SerializedName("Image Gallery")
-//    val imageGallery: ImageGallery?,
     val Location: String,
     @SerializedName("Scientific Name")
     var scientific_name:String?,
@@ -23,9 +21,14 @@ data class FishData(
     val Calories:String,
     val Carbohydrate: String,
     val Cholesterol: String,
+    @SerializedName("Fat, Total")
     val Fat: String,
+    @SerializedName("Fiber, Total Dietary")
     val Fiber:String,
-    val Sugars: String
+    @SerializedName("Sugars, Total")
+    val Sugars: String,
+    @SerializedName("Image Gallery")
+    val imageGallery: ImageGallery?
 ): Parcelable, Comparable<FishData> {
     override fun compareTo(other: FishData): Int {
         return this.Calories.toInt()

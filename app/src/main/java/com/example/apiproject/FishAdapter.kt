@@ -6,14 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 
 class FishAdapter(private val dataSet: List<FishData>): RecyclerView.Adapter<FishAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textViewHabitat: TextView
         val textViewLastSpeciesName: TextView
-        val imageViewFishImage: ImageView
+        var imageViewFishImage: ImageView
         val layout: ConstraintLayout
 
         init {
@@ -34,18 +36,21 @@ class FishAdapter(private val dataSet: List<FishData>): RecyclerView.Adapter<Fis
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        var context = viewHolder.textViewLastSpeciesName.context
+        var context = viewHolder.imageViewFishImage.context
         val fish = dataSet[position]
         viewHolder.textViewLastSpeciesName.text = fish.SpeciesName
         viewHolder.textViewHabitat.text = fish.Habitat
+        Picasso.get().load(fish.imageGallery!!.src).into(viewHolder.imageViewFishImage)
         viewHolder.layout.setOnClickListener {
-//            Toast.makeText(it.context, f, Toast.LENGTH_SHORT).show()
+            Toast.makeText(it.context,"$context", Toast.LENGTH_SHORT).show()
             val detailIntent = Intent(it.context, FishDetailActivity::class.java)
             detailIntent.putExtra(FishDetailActivity.EXTRA_FISH, fish)
             it.context.startActivity(detailIntent)
         }
 
     }
+
+
     override fun getItemCount() = dataSet.size
 
 }

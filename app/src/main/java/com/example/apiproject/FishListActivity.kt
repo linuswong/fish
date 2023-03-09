@@ -101,22 +101,7 @@ class FishListActivity: AppCompatActivity() {
                         .thenByDescending { it.Carbohydrate.toInt() })
                 true
             }
-//            R.id.menu_actualInfo -> {
-//                val builder = AlertDialog.Builder(this)
-//
-//                with(builder)
-//                {
-//                    setTitle("Info")
-//                    setMessage("Red: High Transmission\nOrange:Substantial Transmission\nYellow: " +
-//                            "Moderate Transmission\nBlue: Low Transmission\n\nThe number represents " +
-//                            "the weekly case count per 100k people in the county.")
-//                    show()
-//                }
-//                true
-//            }
-
             else -> super.onOptionsItemSelected(item)
-            //I was here
         }
 
     }
